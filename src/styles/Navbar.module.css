@@ -1,0 +1,225 @@
+/* ============================================
+   Navbar.module.css
+   Vigil — Ashborne
+   Global navigation bar styles
+   ============================================ */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 56px;
+  background: var(--colour-bg-card);
+  border-bottom: 1px solid var(--colour-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.logo {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  color: var(--colour-accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.logo:hover {
+  border: none;
+  color: var(--colour-accent-hover);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--colour-text-primary);
+  border: none;
+  background: var(--colour-bg-secondary);
+}
+
+.active {
+  color: var(--colour-accent);
+}
+
+.active:hover {
+  color: var(--colour-accent);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.themeToggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--colour-text-secondary);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  position: relative;
+}
+
+.themeToggle:hover {
+  border: none;
+  color: var(--colour-accent);
+}
+
+.themeToggle::after {
+  content: 'Toggle theme';
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  color: var(--colour-text-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.themeToggle:hover::after {
+  opacity: 1;
+}
+
+.navLink {
+  background: none;
+  border: 1px solid var(--colour-border);
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.navLink:hover {
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+
+.logoutButton {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.9rem;
+  letter-spacing: 0.1em;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: var(--colour-text-primary);
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1;
+}
+
+.hamburger:hover {
+  border: none;
+  color: var(--colour-accent);
+}
+
+.mobileMenu {
+  display: none;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--colour-bg-card);
+  border-top: 1px solid var(--colour-border);
+  z-index: 49;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 0.75rem;
+}
+
+.mobileMenu.open {
+  display: flex;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobileNavButton {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  background: var(--colour-bg-secondary);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  color: var(--colour-text-primary);
+  cursor: pointer;
+  text-transform: none;
+}
+
+.mobileNavButton:hover {
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+
+@media (max-width: 768px) {
+  .links,
+  .right {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .navbar {
+    padding: 0 1rem;
+  }
+}

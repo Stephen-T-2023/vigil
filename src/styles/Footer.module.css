@@ -1,0 +1,63 @@
+/* ============================================
+   Footer.module.css
+   Vigil — Ashborne
+   Global footer styles
+   ============================================ */
+
+.footer {
+  border-top: 1px solid var(--colour-border);
+  background: var(--colour-bg-card);
+  padding: 1.25rem 2rem;
+}
+
+.inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.link {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--colour-accent);
+}
+
+.dot {
+  color: var(--colour-text-muted);
+  font-size: 0.7rem;
+}
+
+.beta {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-accent);
+  border: 1px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.4rem;
+}

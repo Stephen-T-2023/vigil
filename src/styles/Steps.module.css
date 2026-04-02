@@ -1,0 +1,214 @@
+/* ============================================
+   Steps.module.css
+   Vigil — Ashborne
+   Styles for the step counter page
+   ============================================ */
+
+.page {
+  padding: 2.5rem 2rem;
+}
+
+.inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pageHeader h1 {
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+
+/* Date navigation */
+.dateNav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.75rem;
+}
+
+.dateButton {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.875rem;
+  color: var(--colour-text-muted);
+  cursor: pointer;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.dateButton:hover {
+  border: none;
+  color: var(--colour-accent);
+}
+
+.dateButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.dateLabel {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-primary);
+  letter-spacing: 0.05em;
+  min-width: 100px;
+  text-align: center;
+}
+
+/* Main step card */
+.stepCard {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Large step count display */
+.stepDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.stepCount {
+  font-family: var(--font-primary);
+  font-size: 4rem;
+  color: var(--colour-accent);
+  line-height: 1;
+}
+
+.stepLabel {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Progress bar */
+.progressWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progressBar {
+  height: 6px;
+  background: var(--colour-border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--colour-accent);
+  border-radius: 99px;
+  transition: width var(--transition-base);
+}
+
+.progressLabel {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* Input row */
+.form {
+  border-top: 1px solid var(--colour-border);
+  padding-top: 1.5rem;
+}
+
+.inputRow {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.stepInput {
+  flex: 1;
+}
+
+.saveButton {
+  padding: 0.5rem 1.5rem;
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.saveButton:hover {
+  background: var(--colour-accent);
+  color: var(--colour-bg-primary);
+}
+
+.saveButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1.5rem 1rem;
+  }
+
+  .stepCount {
+    font-size: 3rem;
+  }
+}
+
+.settingsHint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.settingsLink {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--colour-accent);
+  cursor: pointer;
+  text-transform: none;
+}
+
+.settingsLink:hover {
+  border: none;
+  color: var(--colour-accent-hover);
+}

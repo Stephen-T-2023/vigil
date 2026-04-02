@@ -1,0 +1,476 @@
+/* ============================================
+   Workouts.module.css
+   Vigil — Ashborne
+   Styles for the workout logger page
+   ============================================ */
+
+.page {
+  padding: 2.5rem 2rem;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pageHeader h1 {
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Tab switcher */
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.25rem;
+}
+
+.tab {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.1em;
+  color: var(--colour-text-muted);
+  background: none;
+}
+
+.tab:hover {
+  border: none;
+  color: var(--colour-text-primary);
+  background: var(--colour-bg-secondary);
+}
+
+.tabActive {
+  background: var(--colour-bg-secondary);
+  color: var(--colour-accent);
+}
+
+.tabActive:hover {
+  color: var(--colour-accent);
+}
+
+/* Date navigation */
+.dateNav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.75rem;
+}
+
+.dateButton {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.875rem;
+  color: var(--colour-text-muted);
+  cursor: pointer;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.dateButton:hover {
+  border: none;
+  color: var(--colour-accent);
+}
+
+.dateButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.dateLabel {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-primary);
+  letter-spacing: 0.05em;
+  min-width: 100px;
+  text-align: center;
+}
+
+/* Two column layout */
+.logLayout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.sectionTitle {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Left panel — workout/template list */
+.workoutList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.createForm {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.createForm input {
+  flex: 1;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.75rem;
+}
+
+.createButton {
+  padding: 0.4rem 0.75rem;
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.createButton:hover {
+  background: var(--colour-accent);
+  color: var(--colour-bg-primary);
+}
+
+/* Template quick start */
+.templateQuick {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+}
+
+.templateQuickLabel {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.templateQuickButton {
+  text-align: left;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  color: var(--colour-text-secondary);
+  border-color: var(--colour-border);
+}
+
+.templateQuickButton:hover {
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+
+/* Workout/template list items */
+.workoutItems {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.workoutItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+  gap: 0.5rem;
+}
+
+.workoutItem:hover {
+  border-color: var(--colour-accent);
+}
+
+.workoutItemActive {
+  border-color: var(--colour-accent);
+  background: var(--colour-bg-secondary);
+}
+
+.workoutItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.workoutItemName {
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: var(--colour-text-primary);
+}
+
+.workoutItemCount {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.workoutItemActions {
+  flex-shrink: 0;
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* Right panel — exercises */
+.exercisePanel {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  min-height: 400px;
+}
+
+.noWorkoutSelected {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.noWorkoutSelected p {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-muted);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* Add exercise form */
+.exerciseForm {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--colour-border);
+}
+
+.exerciseFormRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.field label {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-secondary);
+}
+
+.field input, .field select {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.5rem;
+}
+
+.addExerciseButton {
+  padding: 0.4rem 1.25rem;
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.addExerciseButton:hover {
+  background: var(--colour-accent);
+  color: var(--colour-bg-primary);
+}
+
+/* Exercise list */
+.exerciseList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exerciseRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--colour-bg-secondary);
+  border-radius: var(--radius-md);
+  gap: 1rem;
+}
+
+.exerciseInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.exerciseName {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  color: var(--colour-text-primary);
+}
+
+.exerciseStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.exerciseStat {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.exerciseActions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+/* Empty state */
+.emptyState {
+  padding: 2rem 0;
+  text-align: center;
+  border: 1px dashed var(--colour-border);
+  border-radius: var(--radius-md);
+}
+
+.emptyState p {
+  color: var(--colour-text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+
+/* Shared action buttons */
+.deleteButton {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  color: var(--colour-text-muted);
+  border-color: var(--colour-border);
+  letter-spacing: 0.1em;
+}
+
+.deleteButton:hover {
+  border-color: var(--colour-danger);
+  color: var(--colour-danger);
+}
+
+.confirmButton {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  border-color: var(--colour-danger);
+  color: var(--colour-danger);
+  letter-spacing: 0.1em;
+}
+
+.confirmButton:hover {
+  background: var(--colour-danger);
+  color: var(--colour-bg-primary);
+}
+
+.cancelButton {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  border-color: var(--colour-border);
+  color: var(--colour-text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page {
+    padding: 1.5rem 1rem;
+  }
+
+  .logLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .exerciseFormRow {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.settingsHint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.settingsLink {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--colour-accent);
+  cursor: pointer;
+  text-transform: none;
+}
+
+.settingsLink:hover {
+  border: none;
+  color: var(--colour-accent-hover);
+}

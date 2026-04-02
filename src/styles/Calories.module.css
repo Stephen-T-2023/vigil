@@ -1,0 +1,342 @@
+/* ============================================
+   Calories.module.css
+   Vigil — Ashborne
+   Styles for the calorie tracker page
+   ============================================ */
+
+.page {
+  padding: 2.5rem 2rem;
+}
+
+.inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pageHeader h1 {
+  margin-bottom: 0.25rem;
+}
+
+.total {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+
+/* Date navigation */
+.dateNav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.75rem;
+}
+
+.dateButton {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.875rem;
+  color: var(--colour-text-muted);
+  cursor: pointer;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.dateButton:hover {
+  border: none;
+  color: var(--colour-accent);
+}
+
+.dateButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.dateLabel {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-primary);
+  letter-spacing: 0.05em;
+  min-width: 100px;
+  text-align: center;
+}
+
+/* Add meal form */
+.form {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form h3 {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-secondary);
+}
+
+/* Read only calculated value display */
+.calculatedValue {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  background: var(--colour-bg-secondary);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  color: var(--colour-accent);
+  letter-spacing: 0.05em;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.addButton {
+  padding: 0.5rem 1.5rem;
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.addButton:hover {
+  background: var(--colour-accent);
+  color: var(--colour-bg-primary);
+}
+
+/* Empty state */
+.emptyState {
+  padding: 3rem 0;
+  text-align: center;
+  border: 1px dashed var(--colour-border);
+  border-radius: var(--radius-lg);
+}
+
+.emptyState p {
+  color: var(--colour-text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
+
+/* Meals list */
+.mealsList {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Header row */
+.mealsHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  padding: 0.75rem 1.25rem;
+  background: var(--colour-bg-secondary);
+  border-bottom: 1px solid var(--colour-border);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+/* Individual meal row */
+.mealRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--colour-border);
+  align-items: center;
+  gap: 1rem;
+  transition: background var(--transition-fast);
+}
+
+.mealRow:hover {
+  background: var(--colour-bg-secondary);
+}
+
+.mealName {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  color: var(--colour-text-primary);
+}
+
+.mealAmount {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-secondary);
+  letter-spacing: 0.03em;
+}
+
+.mealCalories {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-primary);
+  letter-spacing: 0.03em;
+}
+
+.mealActions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* Daily total row */
+.dailyTotal {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  padding: 1rem 1.25rem;
+  background: var(--colour-bg-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--colour-text-secondary);
+  align-items: center;
+}
+
+.totalValue {
+  color: var(--colour-accent);
+  font-size: 0.875rem;
+}
+
+/* Action buttons */
+.deleteButton {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  color: var(--colour-text-muted);
+  border-color: var(--colour-border);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.deleteButton:hover {
+  border-color: var(--colour-danger);
+  color: var(--colour-danger);
+}
+
+.confirmButton {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  border-color: var(--colour-danger);
+  color: var(--colour-danger);
+  letter-spacing: 0.1em;
+}
+
+.confirmButton:hover {
+  background: var(--colour-danger);
+  color: var(--colour-bg-primary);
+}
+
+.cancelButton {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  border-color: var(--colour-border);
+  color: var(--colour-text-muted);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1.5rem 1rem;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mealsHeader {
+    display: none;
+  }
+
+  .mealRow {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+  }
+
+  .mealAmount,
+  .mealCalories {
+    grid-column: 1;
+  }
+
+  .mealActions {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+
+  .dailyTotal {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Settings hint bar */
+.settingsHint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.settingsLink {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--colour-accent);
+  cursor: pointer;
+  text-transform: none;
+}
+
+.settingsLink:hover {
+  border: none;
+  color: var(--colour-accent-hover);
+}

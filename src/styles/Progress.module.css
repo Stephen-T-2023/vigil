@@ -1,0 +1,94 @@
+/* ============================================
+   Progress.module.css
+   Vigil — Ashborne
+   Styles for the progress charts page
+   ============================================ */
+
+.page {
+  padding: 2.5rem 2rem;
+}
+
+.inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.pageHeader h1 {
+  margin-bottom: 0;
+}
+
+/* Date range selector */
+.rangeSelector {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.25rem;
+}
+
+.rangeButton {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.1em;
+  color: var(--colour-text-muted);
+  background: none;
+}
+
+.rangeButton:hover {
+  border: none;
+  color: var(--colour-text-primary);
+  background: var(--colour-bg-secondary);
+}
+
+.rangeActive {
+  background: var(--colour-bg-secondary);
+  color: var(--colour-accent);
+}
+
+.rangeActive:hover {
+  color: var(--colour-accent);
+}
+
+/* Chart cards */
+.chartCard {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chartHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.chartHeader h2 {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.chartGoal {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1.5rem 1rem;
+  }
+}

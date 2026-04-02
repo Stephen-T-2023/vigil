@@ -1,0 +1,161 @@
+/* ============================================
+   Dashboard.module.css
+   Vigil — Ashborne
+   Styles for the main dashboard page
+   ============================================ */
+
+.page {
+  padding: 2.5rem 2rem;
+}
+
+.inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  margin-bottom: 2rem;
+}
+
+.pageHeader h1 {
+  margin-bottom: 0.25rem;
+}
+
+.date {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+
+/* Stats grid — three cards side by side */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Individual stat card */
+.statCard {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.statHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statLabel {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.statGoal {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* Large number display */
+.statValue {
+  font-family: var(--font-primary);
+  font-size: 2.25rem;
+  color: var(--colour-accent);
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.statUnit {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* Progress bar */
+.progressBar {
+  height: 4px;
+  background: var(--colour-border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--colour-accent);
+  border-radius: 99px;
+  transition: width var(--transition-base);
+}
+
+.progressLabel {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* Workout status */
+.workoutBar {
+  height: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.workoutDone {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-success);
+  letter-spacing: 0.05em;
+}
+
+.workoutNone {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* Quick add button */
+.quickAdd {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--colour-accent);
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: left;
+  margin-top: auto;
+}
+
+.quickAdd:hover {
+  border: none;
+  color: var(--colour-accent-hover);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1.5rem 1rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}

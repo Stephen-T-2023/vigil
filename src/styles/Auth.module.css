@@ -1,0 +1,136 @@
+/* ============================================
+   Auth.module.css
+   Vigil — Ashborne
+   Styles for login and signup pages
+   ============================================ */
+
+.container {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--colour-bg-primary);
+  padding: 2rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-size: 2rem;
+  font-family: var(--font-primary);
+  color: var(--colour-accent);
+  letter-spacing: 0.1em;
+}
+
+.tagline {
+  font-size: 0.75rem;
+  font-family: var(--font-ui);
+  color: var(--colour-text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-secondary);
+}
+
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  background: transparent;
+  border: 1px solid var(--colour-accent);
+  color: var(--colour-accent);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.button:hover {
+  background: var(--colour-accent);
+  color: var(--colour-bg-primary);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-danger);
+  margin-bottom: 0;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--colour-text-muted);
+  margin-bottom: 0;
+}
+
+.successMessage {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.successMessage p {
+  color: var(--colour-success);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.legal {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.03em;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.legalLink {
+  color: var(--colour-accent);
+  text-decoration: none;
+}
+
+.legalLink:hover {
+  color: var(--colour-accent-hover);
+}
