@@ -150,6 +150,59 @@
   color: var(--colour-accent-hover);
 }
 
+/* Macro list inside card */
+.macroList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.macroItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.macroItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.macroItemLabel {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--colour-text-muted);
+}
+
+.macroItemValue {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--colour-text-secondary);
+  letter-spacing: 0.03em;
+}
+
+.miniBar {
+  height: 3px;
+  background: var(--colour-border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.miniBarFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width var(--transition-base);
+}
+
+/* No data state */
+.noData {
+  font-size: 2rem;
+  color: var(--colour-text-muted);
+}
+
 @media (max-width: 768px) {
   .page {
     padding: 1.5rem 1rem;

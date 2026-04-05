@@ -101,6 +101,12 @@ export default function Navbar() {
             Workouts
           </button>
           <button
+            className={`${styles.link} ${router.pathname === '/weight' ? styles.active : ''}`}
+            onClick={() => navigate('/weight')}
+          >
+            Weight
+          </button>
+          <button
             className={`${styles.link} ${router.pathname === '/progress' ? styles.active : ''}`}
             onClick={() => navigate('/progress')}
           >
@@ -154,6 +160,9 @@ export default function Navbar() {
           </button>
           <button className={styles.mobileNavButton} onClick={() => navigate('/workouts')}>
             Workouts
+          </button>
+          <button className={styles.mobileNavButton} onClick={() => navigate('/weight')}>
+            Weight
           </button>
           <button className={styles.mobileNavButton} onClick={() => navigate('/progress')}>
             Progress

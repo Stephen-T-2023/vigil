@@ -17,7 +17,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -32,6 +32,48 @@
   color: var(--colour-text-muted);
   letter-spacing: 0.05em;
   margin-bottom: 0;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Tab switcher */
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.25rem;
+}
+
+.tab {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.1em;
+  color: var(--colour-text-muted);
+  background: none;
+}
+
+.tab:hover {
+  border: none;
+  color: var(--colour-text-primary);
+  background: var(--colour-bg-secondary);
+}
+
+.tabActive {
+  background: var(--colour-bg-secondary);
+  color: var(--colour-accent);
+}
+
+.tabActive:hover {
+  color: var(--colour-accent);
 }
 
 /* Date navigation */
@@ -75,6 +117,81 @@
   text-align: center;
 }
 
+/* Settings hint */
+.settingsHint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.settingsLink {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--colour-accent);
+  cursor: pointer;
+  text-transform: none;
+}
+
+.settingsLink:hover {
+  border: none;
+  color: var(--colour-accent-hover);
+}
+
+/* Template quick add */
+.templateQuick {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.templateQuickLabel {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  white-space: nowrap;
+}
+
+.templateQuickButtons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.templateQuickButton {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  color: var(--colour-text-secondary);
+  border-color: var(--colour-border);
+}
+
+.templateQuickButton:hover {
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+
 /* Add meal form */
 .form {
   background: var(--colour-bg-card);
@@ -95,7 +212,7 @@
 
 .formRow {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   gap: 1rem;
   margin-bottom: 1rem;
   align-items: end;
@@ -115,7 +232,6 @@
   color: var(--colour-text-secondary);
 }
 
-/* Read only calculated value display */
 .calculatedValue {
   font-family: var(--font-ui);
   font-size: 0.875rem;
@@ -128,6 +244,32 @@
   height: 36px;
   display: flex;
   align-items: center;
+}
+
+/* Macros row */
+.macroRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.macroLabel {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  white-space: nowrap;
+  padding-top: 1.5rem;
+}
+
+.macroInputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  flex: 1;
 }
 
 .addButton {
@@ -166,10 +308,9 @@
   overflow: hidden;
 }
 
-/* Header row */
 .mealsHeader {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr auto;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr auto;
   padding: 0.75rem 1.25rem;
   background: var(--colour-bg-secondary);
   border-bottom: 1px solid var(--colour-border);
@@ -180,14 +321,13 @@
   color: var(--colour-text-muted);
 }
 
-/* Individual meal row */
 .mealRow {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr auto;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr auto;
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--colour-border);
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   transition: background var(--transition-fast);
 }
 
@@ -208,6 +348,13 @@
   letter-spacing: 0.03em;
 }
 
+.mealMacro {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.03em;
+}
+
 .mealCalories {
   font-family: var(--font-ui);
   font-size: 0.8rem;
@@ -220,10 +367,9 @@
   gap: 0.4rem;
 }
 
-/* Daily total row */
 .dailyTotal {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr auto;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr auto;
   padding: 1rem 1.25rem;
   background: var(--colour-bg-secondary);
   font-family: var(--font-ui);
@@ -236,6 +382,144 @@
 .totalValue {
   color: var(--colour-accent);
   font-size: 0.875rem;
+}
+
+/* Templates layout */
+.logLayout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.templateList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.createForm {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.createForm input {
+  flex: 1;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.75rem;
+}
+
+.createButton {
+  padding: 0.4rem 0.75rem;
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.createButton:hover {
+  background: var(--colour-accent);
+  color: var(--colour-bg-primary);
+}
+
+.templateItems {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.templateItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+  gap: 0.5rem;
+}
+
+.templateItem:hover {
+  border-color: var(--colour-accent);
+}
+
+.templateItemActive {
+  border-color: var(--colour-accent);
+  background: var(--colour-bg-secondary);
+}
+
+.templateItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.templateItemName {
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: var(--colour-text-primary);
+}
+
+.templateItemMeta {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.templatePanel {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  min-height: 400px;
+}
+
+.noTemplateSelected {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.noTemplateSelected p {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-muted);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.templateItemList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.templateItemRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--colour-bg-secondary);
+  border-radius: var(--radius-md);
+  gap: 1rem;
 }
 
 /* Action buttons */
@@ -283,60 +567,94 @@
     grid-template-columns: 1fr 1fr;
   }
 
+  .macroInputs {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   .mealsHeader {
     display: none;
   }
 
   .mealRow {
     grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
   }
 
   .mealAmount,
+  .mealMacro,
   .mealCalories {
     grid-column: 1;
   }
 
   .mealActions {
     grid-column: 2;
-    grid-row: 1 / 3;
+    grid-row: 1 / 4;
     align-self: center;
   }
 
   .dailyTotal {
     grid-template-columns: 1fr 1fr;
   }
+
+  .logLayout {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Settings hint bar */
-.settingsHint {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
+/* Macro summary bar */
+.macroSummary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.macroSummaryItem {
   background: var(--colour-bg-card);
   border: 1px solid var(--colour-border);
   border-radius: var(--radius-md);
-  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.macroSummaryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.macroSummaryLabel {
   font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--colour-text-muted);
-  letter-spacing: 0.05em;
 }
 
-.settingsLink {
-  background: none;
-  border: none;
-  padding: 0;
+.macroSummaryValue {
   font-family: var(--font-ui);
   font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  color: var(--colour-accent);
-  cursor: pointer;
-  text-transform: none;
+  color: var(--colour-text-secondary);
+  letter-spacing: 0.03em;
 }
 
-.settingsLink:hover {
-  border: none;
-  color: var(--colour-accent-hover);
+.macroBar {
+  height: 4px;
+  background: var(--colour-border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.macroBarFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width var(--transition-base);
+}
+
+@media (max-width: 768px) {
+  .macroSummary {
+    grid-template-columns: 1fr;
+  }
 }

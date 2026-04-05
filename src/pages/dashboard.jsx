@@ -20,11 +20,19 @@ export default function Dashboard() {
     calories: 0,
     steps: 0,
     workouts: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    weight: null,
+    weightUnit: 'metric',
   })
   const [settings, setSettings] = useState({
     unit_preference: 'metric',
     calorie_goal: 2000,
     step_goal: 10000,
+    protein_goal: 150,
+    carbs_goal: 250,
+    fat_goal: 70,
   })
 
   /* Get today's date as a string in YYYY-MM-DD format */
@@ -52,10 +60,10 @@ export default function Dashboard() {
 
   /* Fetch today's calories, steps and workout count */
   async function fetchTodayStats(userId) {
-    const [mealsRes, stepsRes, workoutsRes] = await Promise.all([
+    const [mealsRes, stepsRes, workoutsRes, weightRes] = await Promise.all([
       supabase
         .from('vigil_meals')
-        .select('total_calories')
+        .select('total_calories, protein_g, carbs_g, fat_g')
         .eq('user_id', userId)
         .eq('date', today),
       supabase
@@ -69,17 +77,39 @@ export default function Dashboard() {
         .select('id')
         .eq('user_id', userId)
         .eq('date', today),
+      supabase
+        .from('vigil_weight_log')
+        .select('weight, unit')
+        .eq('user_id', userId)
+        .eq('date', today)
+        .single(),
     ])
 
-    /* Sum up total calories from all meals today */
     const totalCalories = mealsRes.data
       ? mealsRes.data.reduce((sum, m) => sum + m.total_calories, 0)
+      : 0
+
+    const totalProtein = mealsRes.data
+      ? mealsRes.data.reduce((sum, m) => sum + (m.protein_g || 0), 0)
+      : 0
+
+    const totalCarbs = mealsRes.data
+      ? mealsRes.data.reduce((sum, m) => sum + (m.carbs_g || 0), 0)
+      : 0
+
+    const totalFat = mealsRes.data
+      ? mealsRes.data.reduce((sum, m) => sum + (m.fat_g || 0), 0)
       : 0
 
     setTodayStats({
       calories: Math.round(totalCalories),
       steps: stepsRes.data?.steps || 0,
       workouts: workoutsRes.data?.length || 0,
+      protein: Math.round(totalProtein),
+      carbs: Math.round(totalCarbs),
+      fat: Math.round(totalFat),
+      weight: weightRes.data?.weight || null,
+      weightUnit: weightRes.data?.unit || 'metric',
     })
   }
 
@@ -162,6 +192,73 @@ export default function Dashboard() {
             </button>
           </div>
 
+          {/* Macros card */}
+          <div className={styles.statCard}>
+            <div className={styles.statHeader}>
+              <span className={styles.statLabel}>Macros</span>
+              <span className={styles.statGoal}>today</span>
+            </div>
+            <div className={styles.macroList}>
+              <div className={styles.macroItem}>
+                <div className={styles.macroItemHeader}>
+                  <span className={styles.macroItemLabel}>Protein</span>
+                  <span className={styles.macroItemValue}>
+                    {todayStats.protein}g / {settings.protein_goal || 150}g
+                  </span>
+                </div>
+                <div className={styles.miniBar}>
+                  <div
+                    className={styles.miniBarFill}
+                    style={{
+                      width: `${Math.min(Math.round((todayStats.protein / (settings.protein_goal || 150)) * 100), 100)}%`,
+                      background: 'var(--colour-success)'
+                    }}
+                  />
+                </div>
+              </div>
+              <div className={styles.macroItem}>
+                <div className={styles.macroItemHeader}>
+                  <span className={styles.macroItemLabel}>Carbs</span>
+                  <span className={styles.macroItemValue}>
+                    {todayStats.carbs}g / {settings.carbs_goal || 250}g
+                  </span>
+                </div>
+                <div className={styles.miniBar}>
+                  <div
+                    className={styles.miniBarFill}
+                    style={{
+                      width: `${Math.min(Math.round((todayStats.carbs / (settings.carbs_goal || 250)) * 100), 100)}%`,
+                      background: 'var(--colour-accent)'
+                    }}
+                  />
+                </div>
+              </div>
+              <div className={styles.macroItem}>
+                <div className={styles.macroItemHeader}>
+                  <span className={styles.macroItemLabel}>Fat</span>
+                  <span className={styles.macroItemValue}>
+                    {todayStats.fat}g / {settings.fat_goal || 70}g
+                  </span>
+                </div>
+                <div className={styles.miniBar}>
+                  <div
+                    className={styles.miniBarFill}
+                    style={{
+                      width: `${Math.min(Math.round((todayStats.fat / (settings.fat_goal || 70)) * 100), 100)}%`,
+                      background: 'var(--colour-danger)'
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              className={styles.quickAdd}
+              onClick={() => router.push('/calories')}
+            >
+              Log meal →
+            </button>
+          </div>
+
           {/* Steps card */}
           <div className={styles.statCard}>
             <div className={styles.statHeader}>
@@ -213,6 +310,39 @@ export default function Dashboard() {
               onClick={() => router.push('/workouts')}
             >
               Log workout →
+            </button>
+          </div>
+
+          {/* Weight card */}
+          <div className={styles.statCard}>
+            <div className={styles.statHeader}>
+              <span className={styles.statLabel}>Weight</span>
+              <span className={styles.statGoal}>today</span>
+            </div>
+            <div className={styles.statValue}>
+              {todayStats.weight !== null ? (
+                <>
+                  {todayStats.weight}
+                  <span className={styles.statUnit}>
+                    {todayStats.weightUnit === 'metric' ? 'kg' : 'lbs'}
+                  </span>
+                </>
+              ) : (
+                <span className={styles.noData}>—</span>
+              )}
+            </div>
+            <div className={styles.workoutBar}>
+              {todayStats.weight !== null ? (
+                <span className={styles.workoutDone}>✓ Logged today</span>
+              ) : (
+                <span className={styles.workoutNone}>Not logged yet</span>
+              )}
+            </div>
+            <button
+              className={styles.quickAdd}
+              onClick={() => router.push('/weight')}
+            >
+              Log weight →
             </button>
           </div>
 

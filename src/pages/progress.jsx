@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import supabase from '../lib/supabaseClient'
 import styles from '../styles/Progress.module.css'
 import {
-  BarChart, Bar, LineChart, Line,
+  BarChart, Bar, LineChart, Line, AreaChart, Area,
   XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer
 } from 'recharts'
@@ -29,6 +29,8 @@ export default function Progress() {
     calorie_goal: 2000,
     step_goal: 10000,
   })
+  const [macroData, setMacroData] = useState([])
+  const [weightData, setWeightData] = useState([])
 
   useEffect(() => {
     async function init() {
@@ -65,12 +67,10 @@ export default function Progress() {
   }
 
   async function fetchChartData(userId, days) {
-    /* Calculate start date for the selected range */
     const startDate = new Date()
     startDate.setDate(startDate.getDate() - days)
     const startStr = startDate.toISOString().split('T')[0]
 
-    /* Build array of all dates in range for filling gaps */
     const dateArray = []
     for (let i = days - 1; i >= 0; i--) {
       const d = new Date()
@@ -78,66 +78,85 @@ export default function Progress() {
       dateArray.push(d.toISOString().split('T')[0])
     }
 
-    /* Fetch calories grouped by date */
-    const { data: meals } = await supabase
-      .from('vigil_meals')
-      .select('date, total_calories')
-      .eq('user_id', userId)
-      .gte('date', startStr)
-      .order('date', { ascending: true })
+    const [mealsRes, stepsRes, workoutsRes, weightRes] = await Promise.all([
+      supabase
+        .from('vigil_meals')
+        .select('date, total_calories, protein_g, carbs_g, fat_g')
+        .eq('user_id', userId)
+        .gte('date', startStr),
+      supabase
+        .from('vigil_steps')
+        .select('date, steps')
+        .eq('user_id', userId)
+        .gte('date', startStr),
+      supabase
+        .from('vigil_workouts')
+        .select('date')
+        .eq('user_id', userId)
+        .gte('date', startStr),
+      supabase
+        .from('vigil_weight_log')
+        .select('date, weight')
+        .eq('user_id', userId)
+        .gte('date', startStr)
+        .order('date', { ascending: true }),
+    ])
 
-    /* Fetch steps grouped by date */
-    const { data: steps } = await supabase
-      .from('vigil_steps')
-      .select('date, steps')
-      .eq('user_id', userId)
-      .gte('date', startStr)
-      .order('date', { ascending: true })
-
-    /* Fetch workouts grouped by date */
-    const { data: workouts } = await supabase
-      .from('vigil_workouts')
-      .select('date')
-      .eq('user_id', userId)
-      .gte('date', startStr)
-      .order('date', { ascending: true })
-
-    /* Group calories by date — sum all meals for each day */
+    /* Calories map */
     const calMap = {}
-    meals?.forEach(m => {
+    mealsRes.data?.forEach(m => {
       calMap[m.date] = (calMap[m.date] || 0) + m.total_calories
     })
 
-    /* Group steps by date */
-    const stepMap = {}
-    steps?.forEach(s => { stepMap[s.date] = s.steps })
+    /* Macro maps */
+    const proteinMap = {}
+    const carbsMap = {}
+    const fatMap = {}
+    mealsRes.data?.forEach(m => {
+      proteinMap[m.date] = (proteinMap[m.date] || 0) + (m.protein_g || 0)
+      carbsMap[m.date] = (carbsMap[m.date] || 0) + (m.carbs_g || 0)
+      fatMap[m.date] = (fatMap[m.date] || 0) + (m.fat_g || 0)
+    })
 
-    /* Group workouts by date — count sessions per day */
+    /* Steps map */
+    const stepMap = {}
+    stepsRes.data?.forEach(s => { stepMap[s.date] = s.steps })
+
+    /* Workouts map */
     const workoutMap = {}
-    workouts?.forEach(w => {
+    workoutsRes.data?.forEach(w => {
       workoutMap[w.date] = (workoutMap[w.date] || 0) + 1
     })
 
-    /* Build chart arrays with short date labels
-       filling in 0 for days with no data */
-    const calData = dateArray.map(date => ({
+    setCalorieData(dateArray.map(date => ({
       date: formatDateShort(date),
       calories: Math.round(calMap[date] || 0),
-    }))
+    })))
 
-    const stpData = dateArray.map(date => ({
+    setStepData(dateArray.map(date => ({
       date: formatDateShort(date),
       steps: stepMap[date] || 0,
-    }))
+    })))
 
-    const wktData = dateArray.map(date => ({
+    setWorkoutData(dateArray.map(date => ({
       date: formatDateShort(date),
       workouts: workoutMap[date] || 0,
-    }))
+    })))
 
-    setCalorieData(calData)
-    setStepData(stpData)
-    setWorkoutData(wktData)
+    setMacroData(dateArray.map(date => ({
+      date: formatDateShort(date),
+      protein: Math.round(proteinMap[date] || 0),
+      carbs: Math.round(carbsMap[date] || 0),
+      fat: Math.round(fatMap[date] || 0),
+    })))
+
+    /* Weight only shows days that have entries */
+    setWeightData(
+      weightRes.data?.map(e => ({
+        date: formatDateShort(e.date),
+        weight: e.weight,
+      })) || []
+    )
   }
 
   /* Format date to short label e.g. "3 Apr" */
@@ -313,6 +332,117 @@ export default function Progress() {
             </BarChart>
           </ResponsiveContainer>
         </div>
+        {/* Macros chart */}
+        <div className={styles.chartCard}>
+          <div className={styles.chartHeader}>
+            <h2>Macros</h2>
+            <div className={styles.macroLegend}>
+              <span className={styles.legendItem} style={{ color: 'var(--colour-success)' }}>
+                ● Protein
+              </span>
+              <span className={styles.legendItem} style={{ color: 'var(--colour-accent)' }}>
+                ● Carbs
+              </span>
+              <span className={styles.legendItem} style={{ color: 'var(--colour-danger)' }}>
+                ● Fat
+              </span>
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={240}>
+            <LineChart data={macroData} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--colour-border)"
+                vertical={false}
+              />
+              <XAxis
+                dataKey="date"
+                tick={{ fontSize: 11, fontFamily: 'Courier New', fill: 'var(--colour-text-muted)' }}
+                tickLine={false}
+                axisLine={false}
+                interval={range === 7 ? 0 : range === 30 ? 6 : 14}
+              />
+              <YAxis
+                tick={{ fontSize: 11, fontFamily: 'Courier New', fill: 'var(--colour-text-muted)' }}
+                tickLine={false}
+                axisLine={false}
+              />
+              <Tooltip
+                contentStyle={tooltipStyle}
+                formatter={(value, name) => [`${value}g`, name]}
+              />
+              <Line
+                type="monotone"
+                dataKey="protein"
+                stroke="var(--colour-success)"
+                strokeWidth={2}
+                dot={false}
+                activeDot={{ r: 4 }}
+              />
+              <Line
+                type="monotone"
+                dataKey="carbs"
+                stroke="var(--colour-accent)"
+                strokeWidth={2}
+                dot={false}
+                activeDot={{ r: 4 }}
+              />
+              <Line
+                type="monotone"
+                dataKey="fat"
+                stroke="var(--colour-danger)"
+                strokeWidth={2}
+                dot={false}
+                activeDot={{ r: 4 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Weight chart — only shown if there is data */}
+        {weightData.length > 1 && (
+          <div className={styles.chartCard}>
+            <div className={styles.chartHeader}>
+              <h2>Weight</h2>
+              <span className={styles.chartGoal}>Last {range} days</span>
+            </div>
+            <ResponsiveContainer width="100%" height={240}>
+              <AreaChart data={weightData} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="var(--colour-border)"
+                  vertical={false}
+                />
+                <XAxis
+                  dataKey="date"
+                  tick={{ fontSize: 11, fontFamily: 'Courier New', fill: 'var(--colour-text-muted)' }}
+                  tickLine={false}
+                  axisLine={false}
+                  interval={range === 7 ? 0 : range === 30 ? 6 : 14}
+                />
+                <YAxis
+                  tick={{ fontSize: 11, fontFamily: 'Courier New', fill: 'var(--colour-text-muted)' }}
+                  tickLine={false}
+                  axisLine={false}
+                  domain={['auto', 'auto']}
+                />
+                <Tooltip
+                  contentStyle={tooltipStyle}
+                  formatter={(value) => [`${value}`, 'Weight']}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="weight"
+                  stroke="var(--colour-accent)"
+                  strokeWidth={2}
+                  fill="var(--colour-bg-secondary)"
+                  dot={{ r: 3, fill: 'var(--colour-accent)' }}
+                  activeDot={{ r: 5 }}
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        )}
 
       </div>
     </div>

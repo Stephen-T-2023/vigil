@@ -33,6 +33,10 @@ export default function Settings() {
   const [updatingPassword, setUpdatingPassword] = useState(false)
   const [deleting, setDeleting] = useState(false)
 
+  const [proteinGoal, setProteinGoal] = useState(150)
+  const [carbsGoal, setCarbsGoal] = useState(250)
+  const [fatGoal, setFatGoal] = useState(70)
+
   useEffect(() => {
     async function init() {
       const { data: { session } } = await supabase.auth.getSession()
@@ -59,6 +63,9 @@ export default function Settings() {
       setUnitPreference(data.unit_preference)
       setCalorieGoal(data.calorie_goal)
       setStepGoal(data.step_goal)
+      setProteinGoal(data.protein_goal || 150)
+      setCarbsGoal(data.carbs_goal || 250)
+      setFatGoal(data.fat_goal || 70)
     }
   }
 
@@ -68,13 +75,15 @@ export default function Settings() {
     setSaving(true)
 
     if (settingsId) {
-      /* Update existing settings */
       const { error } = await supabase
         .from('vigil_user_settings')
         .update({
           unit_preference: unitPreference,
           calorie_goal: calorieGoal,
           step_goal: stepGoal,
+          protein_goal: proteinGoal,
+          carbs_goal: carbsGoal,
+          fat_goal: fatGoal,
         })
         .eq('id', settingsId)
 
@@ -84,7 +93,6 @@ export default function Settings() {
         toast.success('Settings saved')
       }
     } else {
-      /* Create new settings row for this user */
       const { data, error } = await supabase
         .from('vigil_user_settings')
         .insert([{
@@ -92,6 +100,9 @@ export default function Settings() {
           unit_preference: unitPreference,
           calorie_goal: calorieGoal,
           step_goal: stepGoal,
+          protein_goal: proteinGoal,
+          carbs_goal: carbsGoal,
+          fat_goal: fatGoal,
         }])
         .select()
         .single()
@@ -235,6 +246,38 @@ export default function Settings() {
                   min="0"
                   required
                 />
+              </div>
+              <div className={styles.formRow}>
+                <div className={styles.field}>
+                  <label>Daily Protein Goal (g)</label>
+                  <input
+                    type="number"
+                    value={proteinGoal}
+                    onChange={(e) => setProteinGoal(parseInt(e.target.value))}
+                    min="0"
+                    required
+                  />
+                </div>
+                <div className={styles.field}>
+                  <label>Daily Carbs Goal (g)</label>
+                  <input
+                    type="number"
+                    value={carbsGoal}
+                    onChange={(e) => setCarbsGoal(parseInt(e.target.value))}
+                    min="0"
+                    required
+                  />
+                </div>
+                <div className={styles.field}>
+                  <label>Daily Fat Goal (g)</label>
+                  <input
+                    type="number"
+                    value={fatGoal}
+                    onChange={(e) => setFatGoal(parseInt(e.target.value))}
+                    min="0"
+                    required
+                  />
+                </div>
               </div>
               <div className={styles.field}>
                 <label>Daily Step Goal</label>

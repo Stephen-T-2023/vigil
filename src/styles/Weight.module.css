@@ -1,0 +1,300 @@
+/* ============================================
+   Weight.module.css
+   Vigil — Ashborne
+   Styles for the weight tracking page
+   ============================================ */
+
+.page {
+  padding: 2.5rem 2rem;
+}
+
+.inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pageHeader h1 {
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+
+/* Date navigation */
+.dateNav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.75rem;
+}
+
+.dateButton {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.875rem;
+  color: var(--colour-text-muted);
+  cursor: pointer;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.dateButton:hover {
+  border: none;
+  color: var(--colour-accent);
+}
+
+.dateButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.dateLabel {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-primary);
+  letter-spacing: 0.05em;
+  min-width: 120px;
+  text-align: center;
+}
+
+/* Log weight card */
+.logCard {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form {
+  width: 100%;
+}
+
+.inputRow {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.weightInput {
+  flex: 1;
+}
+
+.unitSelect {
+  width: auto;
+  flex-shrink: 0;
+}
+
+.saveButton {
+  padding: 0.5rem 1.5rem;
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.saveButton:hover {
+  background: var(--colour-accent);
+  color: var(--colour-bg-primary);
+}
+
+.saveButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Current entry display */
+.currentEntry {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--colour-border);
+}
+
+.currentWeight {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  color: var(--colour-accent);
+}
+
+.currentLabel {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--colour-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex: 1;
+}
+
+/* Chart card */
+.chartCard {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chartHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.chartHeader h2 {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.rangeSelector {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--colour-bg-secondary);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  padding: 0.25rem;
+}
+
+.rangeButton {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.1em;
+  color: var(--colour-text-muted);
+  background: none;
+}
+
+.rangeButton:hover {
+  border: none;
+  color: var(--colour-text-primary);
+  background: var(--colour-bg-card);
+}
+
+.rangeActive {
+  background: var(--colour-bg-card);
+  color: var(--colour-accent);
+}
+
+.rangeActive:hover {
+  color: var(--colour-accent);
+}
+
+/* Recent entries list */
+.entriesList {
+  background: var(--colour-bg-card);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.listTitle {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  padding: 0.75rem 1.25rem;
+  background: var(--colour-bg-secondary);
+  border-bottom: 1px solid var(--colour-border);
+}
+
+.entryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--colour-border);
+  gap: 1rem;
+  transition: background var(--transition-fast);
+}
+
+.entryRow:hover {
+  background: var(--colour-bg-secondary);
+}
+
+.entryRow:last-child {
+  border-bottom: none;
+}
+
+.entryDate {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--colour-text-secondary);
+  letter-spacing: 0.03em;
+  flex: 1;
+}
+
+.entryWeight {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  color: var(--colour-text-primary);
+}
+
+/* Empty state */
+.emptyState {
+  padding: 3rem 0;
+  text-align: center;
+  border: 1px dashed var(--colour-border);
+  border-radius: var(--radius-lg);
+}
+
+.emptyState p {
+  color: var(--colour-text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
+
+/* Action buttons */
+.deleteButton {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  color: var(--colour-text-muted);
+  border-color: var(--colour-border);
+  letter-spacing: 0.1em;
+}
+
+.deleteButton:hover {
+  border-color: var(--colour-danger);
+  color: var(--colour-danger);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1.5rem 1rem;
+  }
+
+  .inputRow {
+    flex-wrap: wrap;
+  }
+
+  .weightInput {
+    width: 100%;
+  }
+}

@@ -92,3 +92,15 @@
     padding: 1.5rem 1rem;
   }
 }
+
+/* Macro legend */
+.macroLegend {
+  display: flex;
+  gap: 1rem;
+}
+
+.legendItem {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
